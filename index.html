@@ -32,12 +32,17 @@
       font-family: "Inter var", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"
     }
   </style>
-  <script src="js/main.js"></script>
+
+  <script type="text/babel" src="https://cdn.jsdelivr.net/npm/@mojs/core"></script>
+  <script src="https://unpkg.com/scrollreveal"></script>
+  <script>
+    ScrollReveal({ reset: true });
+  </script>
 </head>
 
 <body class="antialiased bg-body text-body font-body">
   <div class="top_container">
-    <section>
+    <section class="intro-section">
       <div class="container mx-auto">
         <nav class="flex justify-between items-center pt-6">
           <div class="w-full md:text-5xl text-3xl text-center lg:text-left font-semibold leading-none">
@@ -49,7 +54,7 @@
               <div class="max-w-lg lg:max-w-md mx-auto lg:mx-0 mb-8 text-center lg:text-left">
                 <h2 class="text-3xl md:text-4xl mb-4 font-bold font-heading">
                   <span>Livet er for meg</span>
-                  <span class="text-blue-600">en lekeplass.</span>
+                  <span class="text-reveal text-blue-600">en lekeplass.</span>
                 </h2>
                 <p class="text-blueGray-400 leading-relaxed">Kunst, kultur, kurs, koding og samtalen er mine verktøy.
                 </p>
@@ -62,8 +67,8 @@
                   Mine referanser</a>
               </div>
             </div>
-
           </div>
+          <div id="output"></div>
           <div class="w-full lg:w-1/2 px-3 mb-12 lg:mb-0">
             <div class="flex justify-end"><img class="-mt-20 pt-20 h-160" src="metis-assets/images/erling_profil.jpg"
                 alt="Profilbilde av Erling"></div>
@@ -72,7 +77,7 @@
       </div>
     </section>
 
-    <section class="py-12 md:py-20">
+    <section class="job-section py-12 md:py-20">
       <div class="container mx-auto">
         <div class="flex flex-wrap -mx-3">
           <div class="relative w-full lg:w-1/3 mb-8 lg:mb-0 text-center lg:text-left">
@@ -96,7 +101,7 @@
         </div>
       </div>
     </section>
-    <section class="py-12 md:py-20">
+    <section class="job-section py-12 md:py-20">
       <div class="container mx-auto">
         <div class="flex flex-wrap -mx-3">
           <div class="relative w-full lg:w-1/3 mb-8 lg:mb-0 text-center lg:text-left">
@@ -122,7 +127,7 @@
         </div>
       </div>
     </section>
-    <section class="py-12 md:py-20">
+    <section class="job-section py-12 md:py-20">
       <div class="container mx-auto">
         <div class="flex flex-wrap -mx-3">
           <div class="relative w-full lg:w-1/3 mb-8 lg:mb-0 text-center lg:text-left">
@@ -143,7 +148,7 @@
         </div>
       </div>
     </section>
-    <section class="bg-indigo-800" id="reference">
+    <section class="referenceSection bg-indigo-800" id="reference">
       <div class="container mx-auto md:grid md:grid-cols-2">
         <div
           class="py-12 px-4 sm:px-6 md:flex md:flex-col md:py-16 md:pl-0 md:pr-10 md:border-r md:border-indigo-900 lg:pr-16">
@@ -211,7 +216,7 @@
           </div>
           <div class="w-full lg:w-1/5 px-3">
             <p class="mb-2 lg:mb-4 lg:text-lg font-bold font-heading text-blueGray-800">Kontakt meg</p>
-            <p class="lg:text-lg text-blueGray-400">Erling@rognhaugen.no</p>
+            <a class="lg:text-lg text-blueGray-400" href="mailto:Erling@schmett.com ">Erling@schmett.com</a>
           </div>
         </div>
         <!-- <div class="flex flex-col lg:flex-row items-center lg:justify-between">
@@ -224,27 +229,185 @@
   </div>
   <script>
 
-    const play = document.querySelector('button');
+    // ScrollReveal().reveal(".job-section", { delay: 100 });
+    // ScrollReveal().reveal(".referenceSection", { delay: 100 });
+    // ScrollReveal().reveal(".text-reveal", { delay: 2000 });
 
-    const svgContainer = document.getElementById('svg');
+    // const play = document.querySelector('button');
 
-    const animItem = bodymovin.loadAnimation({
-      wrapper: svgContainer,
-      animType: 'svg',
-      loop: false,
-      autoplay: false,
-      path: 'https://assets2.lottiefiles.com/packages/lf20_rovf9gzu.json'
+    // const svgContainer = document.getElementById('svg');
+
+    // const animItem = bodymovin.loadAnimation({
+    //   wrapper: svgContainer,
+    //   animType: 'svg',
+    //   loop: false,
+    //   autoplay: false,
+    //   path: 'https://assets2.lottiefiles.com/packages/lf20_rovf9gzu.json'
+    // });
+
+    // play.addEventListener('click', () => {
+    //   svgContainer.classList.remove('hidden');
+    //   animItem.goToAndPlay(0, true);
+    // })
+
+    // animItem.addEventListener('complete', () => {
+    //   svgContainer.classList.add('hidden');
+    // });
+
+  </script>
+  <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+  <script type="text/babel">
+    const redCirc = new mojs.Shape({
+      left: 0,
+      top: 0,
+      fill: 'none',
+      stroke: 'red',
+      radius: 15,
+      strokeWidth: 10,
+
+
+      duration: 100
+    })
+      .then({
+        strokeWidth: 0,
+        scale: { 1: 2, easing: 'sin.in' },
+        duration: 500
+      });
+
+    const sparks = new mojs.Burst({
+      left: 0,
+      top: 0,
+      radius: { 0: 30, easing: 'cubic.out' },
+      angle: { 0: 90, easing: 'quad.out' },
+      children: {
+        shape: 'cross',
+        stroke: 'white',
+        points: 12,
+        radius: 10,
+        fill: 'none',
+        angle: { 0: 360 },
+        duration: 300
+
+      }
+
+
     });
 
-    play.addEventListener('click', () => {
-      svgContainer.classList.remove('hidden');
-      animItem.goToAndPlay(0, true);
-    })
+    const redSparks = new mojs.Burst({
+      left: 0, top: 0,
+      count: 8,
+      radius: { 100: 300 },
+      angle: { 0: 90, easing: 'cubic.out' },
+      children: {
+        shape: 'line',
+        stroke: { 'red': 'transparent' },
+        strokeWidth: 5,
+        scaleX: { 0.5: 0 },
+        degreeShift: 'rand(-90, 90)',
+        radius: 'rand(20, 300)',
+        duration: 200,
+        delay: 'rand(0, 150)',
 
-    animItem.addEventListener('complete', () => {
-      svgContainer.classList.add('hidden');
-    })
+      }
+    });
 
+    const triangles = new mojs.Burst({
+      radius: { 0: 1000, easing: 'cubic.out' },
+      angle: { 1080: 0, easing: 'quad.out' },
+      left: 0, top: 0,
+      count: 20,
+      children: {
+        shape: 'polygon',
+        points: 3,
+        radius: { 10: 100 },
+        fill: ['red', 'yellow', 'blue', 'green'],
+        duration: 3000
+      }
+    });
+
+    const pentagons = new mojs.Burst({
+      radius: { 0: 1000, easing: 'cubic.out' },
+      angle: { 0: 720, easing: 'quad.out' },
+      left: 0, top: 0,
+      count: 20,
+      children: {
+        shape: 'polygon',
+        radius: { 1: 300 },
+        points: 5,
+        fill: ['purple', 'pink', 'yellow', 'green'],
+        delay: 500,
+        duration: 3000
+      }
+    });
+
+    const lines = new mojs.Burst({
+      radius: { 0: 1000, easing: 'cubic.out' },
+      angle: { 0: 1440, easing: 'cubic.out' },
+      left: 0, top: 0,
+      count: 5,
+      children: {
+        shape: 'line',
+        radius: { 1: 100, easing: 'elastic.out' },
+        fill: 'none',
+        stroke: ['red', 'orange'],
+        delay: 'stagger(10)',
+        duration: 1000
+      }
+    });
+
+    const redSquares = new mojs.Burst({
+      radius: { 0: 1000, easing: 'cubic.out' },
+      angle: { 360: 0, easing: 'quad.out' },
+      left: 0, top: 0,
+      count: 5,
+      children: {
+        shape: 'rect',
+        radiusX: { 1: 1000 },
+        radiusY: 50,
+        points: 5,
+        fill: 'none',
+        stroke: { 'red': 'orange' },
+        strokeWidth: { 5: 15 },
+        delay: 1000,
+        duration: 3000
+      }
+    });
+
+
+
+    document.addEventListener('click', function (e) {
+
+      redCirc
+        .tune({ x: e.pageX, y: e.pageY, })
+        .replay();
+
+      sparks
+        .tune({ x: e.pageX, y: e.pageY })
+        .replay();
+
+      redSparks
+        .tune({ x: e.pageX, y: e.pageY })
+        .replay()
+        .generate();
+
+      triangles
+        .tune({ x: e.pageX, y: e.pageY, })
+        .replay()
+
+      pentagons
+        .tune({ x: e.pageX, y: e.pageY, })
+        .replay()
+
+      lines
+        .tune({ x: e.pageX, y: e.pageY, })
+        .replay()
+
+      redSquares
+        .tune({ x: e.pageX, y: e.pageY, })
+        .replay()
+
+
+    });
   </script>
 </body>
 

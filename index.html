@@ -229,9 +229,9 @@
   </div>
   <script>
 
-    // ScrollReveal().reveal(".job-section", { delay: 100 });
-    // ScrollReveal().reveal(".referenceSection", { delay: 100 });
-    // ScrollReveal().reveal(".text-reveal", { delay: 2000 });
+    ScrollReveal().reveal(".job-section", { delay: 100 });
+    ScrollReveal().reveal(".referenceSection", { delay: 100 });
+    ScrollReveal().reveal(".text-reveal", { delay: 2000 });
 
     // const play = document.querySelector('button');
 
@@ -312,7 +312,7 @@
     });
 
     const triangles = new mojs.Burst({
-      radius: { 0: 1000, easing: 'cubic.out' },
+      radius: { 0: 100, easing: 'cubic.out' },
       angle: { 1080: 0, easing: 'quad.out' },
       left: 0, top: 0,
       count: 20,
@@ -325,44 +325,15 @@
       }
     });
 
-    const pentagons = new mojs.Burst({
-      radius: { 0: 1000, easing: 'cubic.out' },
-      angle: { 0: 720, easing: 'quad.out' },
-      left: 0, top: 0,
-      count: 20,
-      children: {
-        shape: 'polygon',
-        radius: { 1: 300 },
-        points: 5,
-        fill: ['purple', 'pink', 'yellow', 'green'],
-        delay: 500,
-        duration: 3000
-      }
-    });
-
-    const lines = new mojs.Burst({
-      radius: { 0: 1000, easing: 'cubic.out' },
-      angle: { 0: 1440, easing: 'cubic.out' },
-      left: 0, top: 0,
-      count: 5,
-      children: {
-        shape: 'line',
-        radius: { 1: 100, easing: 'elastic.out' },
-        fill: 'none',
-        stroke: ['red', 'orange'],
-        delay: 'stagger(10)',
-        duration: 1000
-      }
-    });
 
     const redSquares = new mojs.Burst({
-      radius: { 0: 1000, easing: 'cubic.out' },
+      radius: { 0: 100, easing: 'cubic.out' },
       angle: { 360: 0, easing: 'quad.out' },
       left: 0, top: 0,
       count: 5,
       children: {
         shape: 'rect',
-        radiusX: { 1: 1000 },
+        radiusX: { 1: 100 },
         radiusY: 50,
         points: 5,
         fill: 'none',
@@ -385,24 +356,7 @@
         .tune({ x: e.pageX, y: e.pageY })
         .replay();
 
-      redSparks
-        .tune({ x: e.pageX, y: e.pageY })
-        .replay()
-        .generate();
-
       triangles
-        .tune({ x: e.pageX, y: e.pageY, })
-        .replay()
-
-      pentagons
-        .tune({ x: e.pageX, y: e.pageY, })
-        .replay()
-
-      lines
-        .tune({ x: e.pageX, y: e.pageY, })
-        .replay()
-
-      redSquares
         .tune({ x: e.pageX, y: e.pageY, })
         .replay()
 
